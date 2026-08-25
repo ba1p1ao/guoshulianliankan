@@ -1,0 +1,371 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+  background: #2e3b22;
+  color: #fff;
+  overflow: hidden;
+  user-select: none;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#start {
+  background: #000 url('./assets/ui/bg.png') center / cover no-repeat;
+}
+
+#over {
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+    #000 url('./assets/ui/bg.png') center / cover no-repeat;
+}
+
+/* 过关界面按钮：背景使用 bg.png */
+#over .btn {
+  background: #000 url('./assets/ui/bg.png') center / cover no-repeat;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+#over .btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+#title-img {
+  width: 380px;
+  max-width: 80vw;
+}
+
+.title-wrap {
+  position: relative;
+  display: inline-block;
+  text-align: right;
+}
+
+.subtitle {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 18px;
+  opacity: 0.9;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.menu {
+  display: flex;
+  gap: 18px;
+}
+
+.level-select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.level-tip {
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.level-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 380px;
+}
+
+.lvl-btn {
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 12px;
+  background: #000 url('./assets/ui/bg.png') center / cover no-repeat;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.lvl-btn:hover {
+  background: #4c9a3e;
+}
+
+.lvl-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #2b5a22;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 30px;
+  font-size: 19px;
+  background: #ff9800;
+  color: #fff;
+  box-shadow: 0 4px 0 #c66900;
+}
+
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #c66900;
+}
+
+.btn img {
+  height: 40px;
+  display: block;
+}
+
+.help-wrap {
+  position: relative;
+  display: inline-block;
+  text-align: right;
+  max-width: 88vw;
+}
+
+.help-img {
+  display: block;
+  width: min(720px, 92vw);
+  height: auto;
+  border-radius: 12px;
+}
+
+.btn-start {
+  display: inline-block;
+  margin-top: 16px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: none;
+  line-height: 0;
+}
+
+.btn-start img {
+  height: 64px;
+  display: block;
+}
+
+.btn-start:hover {
+  filter: brightness(1.08);
+}
+
+.btn-start:active {
+  transform: scale(0.97);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 21px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 10px 28px;
+  border-radius: 14px;
+  width: var(--game-w, 96vw);
+  max-width: 80vw;
+}
+
+.topbar b {
+  color: #ffeb3b;
+  font-size: 24px;
+}
+
+.time-clock {
+  position: relative;
+  display: inline-block;
+  flex: 1 1 auto;
+  min-width: 260px;
+  max-width: 84vw;
+  height: 28px;
+}
+
+.clock-bg,
+.clock-fg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.clock-fg {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.25s linear;
+}
+
+.clock-fg.low {
+  filter: brightness(0.75) sepia(1) hue-rotate(-50deg) saturate(3);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  width: var(--game-w, 96vw);
+  max-width: 98vw;
+}
+
+.imgbtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.imgbtn img {
+  height: 46px;
+  display: block;
+}
+
+.imgbtn:active {
+  transform: translateY(2px);
+}
+
+#board-wrap {
+  position: relative;
+}
+
+#grid {
+  position: absolute;
+  display: grid;
+  gap: 0;
+}
+
+.tile {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #f7f2e0;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: 3px solid transparent;
+  transition: transform 0.08s, opacity 0.15s;
+}
+
+.tile:hover {
+  transform: scale(1.05);
+}
+
+.tile.selected {
+  outline: 3px solid #ff3b3b;
+  background-color: #fff3b0;
+  z-index: 4;
+}
+
+.tile.hint {
+  outline: 4px solid #00e5ff;
+  box-shadow: 0 0 16px 4px #00e5ff, inset 0 0 10px #00e5ff;
+  animation: hintpulse 0.45s ease-in-out 4;
+  z-index: 6;
+}
+
+@keyframes hintpulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 12px 3px #00e5ff, inset 0 0 8px #00e5ff;
+  }
+  50% {
+    transform: scale(1.18);
+    box-shadow: 0 0 28px 9px #00e5ff, inset 0 0 16px #00e5ff;
+  }
+}
+
+#link {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transition: opacity 0.12s linear;
+}
+
+#toast {
+  position: absolute;
+  top: 22%;
+  background: rgba(0, 0, 0, 0.72);
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+#toast.show {
+  opacity: 1;
+}
+
+#pause-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.pause-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.pause-box h2 {
+  font-size: 30px;
+}
+
+/* 暂停界面按钮：背景使用 bg.png */
+.pause-box .btn {
+  background: #000 url('./assets/ui/bg.png') center / cover no-repeat;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.pause-box .btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+.over-score {
+  font-size: 22px;
+}
+
+.over-score b {
+  color: #ffeb3b;
+  font-size: 26px;
+}

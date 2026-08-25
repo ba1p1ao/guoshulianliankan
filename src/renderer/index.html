@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>果蔬连连看</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 开始界面 -->
+      <section id="start" class="screen">
+        <div class="title-wrap">
+          <img id="title-img" alt="果蔬连连看" />
+          <span class="subtitle">单机版</span>
+        </div>
+        <div class="help-wrap">
+          <img id="help-img" class="help-img" alt="玩法说明" />
+          <button id="btn-start" class="btn-start"><img alt="开始游戏" /></button>
+        </div>
+        <div class="level-select">
+          <p class="level-tip">选择关卡（测试）</p>
+          <div id="level-grid" class="level-grid"></div>
+        </div>
+      </section>
+
+      <!-- 游戏界面 -->
+      <section id="game" class="screen hidden">
+        <div class="topbar">
+          <span>关卡：<b id="level">1</b></span>
+          <div class="time-clock" title="时间（消除可恢复）">
+            <img class="clock-bg" id="clock-bg" alt="" />
+            <img class="clock-fg" id="clock-fg" alt="" />
+          </div>
+          <span>分数：<b id="score">0</b></span>
+        </div>
+        <div class="toolbar">
+          <button id="btn-hint" class="imgbtn" title="提示"><img alt="提示" /></button>
+          <button id="btn-shuffle" class="imgbtn" title="洗牌"><img alt="洗牌" /></button>
+          <button id="btn-pause" class="imgbtn" title="暂停"><img alt="暂停" /></button>
+        </div>
+        <div id="board-wrap">
+          <div id="grid"></div>
+          <canvas id="link"></canvas>
+        </div>
+        <div id="toast"></div>
+      </section>
+
+      <!-- 结算界面 -->
+      <section id="over" class="screen hidden">
+        <h1 id="over-title">过关！</h1>
+        <p class="over-score">本局得分 <b id="over-score">0</b></p>
+        <div class="menu">
+          <button id="btn-next" class="btn hidden">下一关</button>
+          <button id="btn-again" class="btn">重玩</button>
+        </div>
+      </section>
+
+      <!-- 暂停遮罩 -->
+      <div id="pause-overlay" class="hidden">
+        <div class="pause-box">
+          <h2>已暂停</h2>
+          <button id="btn-resume" class="btn">继续</button>
+          <button id="btn-menu" class="btn">返回主菜单</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

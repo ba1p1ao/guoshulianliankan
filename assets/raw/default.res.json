@@ -1,0 +1,96 @@
+{
+	"groups": [
+		{
+			"keys": "startBtn_png,bg_png,pauseBtn_png,tipBtn_png,title_png,winImg_png,endImg_png,help_png,countdown_png,daojishi_png,icon_json,boxBg_png,box_png,continueBtn_png,nextLevelBtn_png,resetBtn_png,bubbleSound_mp3",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/startBtn.png",
+			"type": "image",
+			"name": "startBtn_png"
+		},
+		{
+			"url": "assets/bg.png",
+			"type": "image",
+			"name": "bg_png"
+		},
+		{
+			"name": "pauseBtn_png",
+			"type": "image",
+			"url": "assets/pauseBtn.png"
+		},
+		{
+			"name": "tipBtn_png",
+			"type": "image",
+			"url": "assets/tipBtn.png"
+		},
+		{
+			"name": "title_png",
+			"type": "image",
+			"url": "assets/title.png"
+		},
+		{
+			"name": "winImg_png",
+			"type": "image",
+			"url": "assets/winImg.png"
+		},
+		{
+			"name": "endImg_png",
+			"type": "image",
+			"url": "assets/endImg.png"
+		},
+		{
+			"name": "help_png",
+			"type": "image",
+			"url": "assets/help.png"
+		},
+		{
+			"name": "countdown_png",
+			"type": "image",
+			"url": "assets/countdown.png"
+		},
+		{
+			"name": "daojishi_png",
+			"type": "image",
+			"url": "assets/daojishi.png"
+		},
+		{
+			"name": "icon_json",
+			"type": "sheet",
+			"url": "assets/icon.json",
+			"subkeys": "icon45,icon1,icon2,icon3,icon4,icon5,icon6,icon7,icon8,icon9,icon10,icon11,icon12,icon13,icon14,icon15,icon16,icon17,icon18,icon19,icon20,icon21,icon22,icon23,icon24,icon25,icon26,icon27,icon28,icon29,icon30,icon31,icon32,icon33,icon34,icon35,icon36,icon37,icon38,icon39,icon40,icon41,icon42,icon43,icon44"
+		},
+		{
+			"name": "boxBg_png",
+			"type": "image",
+			"url": "assets/boxBg.png"
+		},
+		{
+			"name": "box_png",
+			"type": "image",
+			"url": "assets/box.png"
+		},
+		{
+			"name": "continueBtn_png",
+			"type": "image",
+			"url": "assets/continueBtn.png"
+		},
+		{
+			"name": "nextLevelBtn_png",
+			"type": "image",
+			"url": "assets/nextLevelBtn.png"
+		},
+		{
+			"name": "resetBtn_png",
+			"type": "image",
+			"url": "assets/resetBtn.png"
+		},
+		{
+			"name": "bubbleSound_mp3",
+			"type": "sound",
+			"url": "assets/bubbleSound.mp3"
+		}
+	]
+}

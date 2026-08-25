@@ -1,6 +1,6 @@
 {
   "name": "guoshu-llk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "果蔬连连看 - electron-vite 单机版",
   "main": "out/main/index.js",
   "author": "",
@@ -33,11 +33,12 @@
       "package.json"
     ],
     "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "runAfterFinish": true,
-      "perMachine": false,
-      "oneClick": true
+      "perMachine": false
     },
     "win": {
       "target": "nsis"

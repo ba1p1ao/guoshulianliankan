@@ -72,13 +72,55 @@ export class Board {
     this.buildPad()
   }
 
-  // 生成：保证开局可解
+  // 生成：保证开局至少存在一步可走（整盘可全消由玩家卡住时自动洗牌兜底）
   generate(typeIds: number[]): void {
     let guard = 0
     do {
       this.fillRandom(typeIds)
-      guard++
-    } while (this.remaining() > 0 && !this.solvable() && guard < 200)
+      // 随机布局在种类较多时一步可走对可能缺失，循环至多 200 次
+    } while (this.remaining() > 0 && !this.findAnyMove() && guard < 200)
+    // 仍无一步可走时，直接构造一个相邻同型对
+    if (this.remaining() > 0 && !this.findAnyMove()) this.ensureMove()
+  }
+
+  // 交换构造一个相邻同型对，保证开局至少存在一步可走
+  private ensureMove(): void {
+    for (let guard = 0; guard < 50; guard++) {
+      // 收集每种类型的方块位置
+      const byType = new Map<number, Cell[]>()
+      for (let r = 0; r < this.rows; r++) {
+        for (let c = 0; c < this.cols; c++) {
+          const t = this.grid[r][c]
+          if (t === 0) continue
+          if (!byType.has(t)) byType.set(t, [])
+          byType.get(t)!.push({ r, c })
+        }
+      }
+      const candidates = [...byType.entries()].filter(([, v]) => v.length >= 2)
+      if (candidates.length === 0) break
+      // 随机挑一种类型及其两个方块 a、b
+      const [, cells] = candidates[Math.floor(Math.random() * candidates.length)]
+      const i = Math.floor(Math.random() * cells.length)
+      const a = cells[i]
+      const b = cells[(i + 1 + Math.floor(Math.random() * (cells.length - 1))) % cells.length]
+      // 取 b 的一个相邻格 n，把 a 的类型换到 n 上，使 n 与 b 相邻同型
+      const dirs = [
+        [-1, 0],
+        [1, 0],
+        [0, -1],
+        [0, 1],
+      ]
+      const [dr, dc] = dirs[Math.floor(Math.random() * dirs.length)]
+      const nr = b.r + dr
+      const nc = b.c + dc
+      if (nr < 0 || nr >= this.rows || nc < 0 || nc >= this.cols) continue
+      const t = this.grid[b.r][b.c]
+      this.grid[a.r][a.c] = this.grid[nr][nc]
+      this.grid[nr][nc] = t
+      this.buildPad()
+      if (this.solvable()) return
+    }
+    this.buildPad()
   }
 
   remaining(): number {

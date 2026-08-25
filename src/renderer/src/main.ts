@@ -24,8 +24,8 @@ import shuffleUrl from "./assets/ui/resetBtn.png";
 import pauseUrl from "./assets/ui/pauseBtn.png";
 import startUrl from "./assets/ui/startBtn.png";
 
-// 关卡配置（闯关模式：10 关，14 列 × 10 行）
-const CONFIG = { rows: 10, cols: 14, types: 20, time: 300, levels: 10 };
+// 关卡配置（闯关模式：10 关，14 列 × 10 行，45 种果蔬全部上场）
+const CONFIG = { rows: 10, cols: 14, types: 45, time: 300, levels: 10 };
 const GAP = 2; // 格子间隙（px）
 const RECOVER = 5; // 每次消除恢复的时间（秒）
 

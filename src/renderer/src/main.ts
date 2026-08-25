@@ -24,10 +24,17 @@ import shuffleUrl from "./assets/ui/resetBtn.png";
 import pauseUrl from "./assets/ui/pauseBtn.png";
 import startUrl from "./assets/ui/startBtn.png";
 
-// 关卡配置（闯关模式：10 关，14 列 × 10 行，45 种果蔬全部上场）
-const CONFIG = { rows: 10, cols: 14, types: 45, time: 300, levels: 10 };
+// 关卡配置（闯关模式：10 关，14 列 × 10 行）
+const CONFIG = { rows: 10, cols: 14, time: 300, levels: 10 };
 const GAP = 2; // 格子间隙（px）
 const RECOVER = 5; // 每次消除恢复的时间（秒）
+
+// 果蔬种类随关卡递增：1~2 关 25 种，3~7 关 40 种，8~10 关 45 种（全部素材上场）
+function typesForLevel(level: number): number {
+  if (level <= 2) return 25;
+  if (level <= 7) return 40;
+  return 45;
+}
 
 // 移动方式：消除后按方向补齐留空（无自主移动）
 import type { MoveMode } from "./board";
@@ -141,7 +148,7 @@ function startGame(level = 1) {
   lastWasFinalWin = false;
   cellSize = computeCellSize();
   currentMovement = makeMovement(currentLevel);
-  const typeIds = Array.from({ length: CONFIG.types }, (_, i) => i + 1);
+  const typeIds = Array.from({ length: typesForLevel(currentLevel) }, (_, i) => i + 1);
   board = new Board(CONFIG.rows, CONFIG.cols, typeIds);
   renderBoard();
   timeLeft = CONFIG.time;

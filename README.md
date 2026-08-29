@@ -68,11 +68,11 @@ npm run dist:portable  # 仅生成便携版
 
 1. 提升版本号：`npm version patch`（生成 vX.Y.Z tag，**tag 必须与版本号一致**）。
 2. 构建安装版：`npm run dist:setup`。
-3. 在 **GitHub** 与 **Gitee** 两处各自创建**正式**发行版（不能是草稿，草稿不更新），均需上传以下三个同名文件：
+3. 在 **GitHub** 与 **Gitee** 两处各自创建**正式**发行版（不能是草稿，草稿不更新），均需上传以下四个同名文件：
    - `dist/guoshu-llk-<version>-setup.exe`
    - `dist/guoshu-llk-<version>-setup.exe.blockmap`
    - `dist/latest.yml`
-   - 便携版 exe 可选附带，仅供手动下载。
+   - `dist/guoshu-llk-<version>-portable.exe`
 4. 发布后已安装的用户将在启动约 5 秒后收到更新并自动下载。
 
 GitHub 侧可用 gh CLI：`gh release create vX.Y.Z dist/guoshu-llk-*-setup.exe dist/guoshu-llk-*-setup.exe.blockmap dist/latest.yml`。

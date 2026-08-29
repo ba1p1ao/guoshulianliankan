@@ -1,6 +1,6 @@
 {
   "name": "guoshu-llk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "果蔬连连看 - electron-vite 单机版",
   "main": "out/main/index.js",
   "author": "",

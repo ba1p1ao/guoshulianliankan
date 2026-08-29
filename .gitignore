@@ -5,9 +5,15 @@ node_modules/
 out/
 dist/
 
+# 本地更新链路测试用临时目录
+update-test*/
+
 # 日志
 *.log
 
 # 系统文件
 .DS_Store
 Thumbs.db
+
+# ZCode 本地工作区
+.zcode/

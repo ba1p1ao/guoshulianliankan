@@ -1,7 +1,8 @@
 import { app, BrowserWindow } from 'electron'
 import { join } from 'path'
+import { initUpdater } from './updater'
 
-function createWindow(): void {
+function createWindow(): BrowserWindow {
   const win = new BrowserWindow({
     width: 1440,
     height: 900,
@@ -31,10 +32,13 @@ function createWindow(): void {
   } else {
     win.loadFile(join(__dirname, '../renderer/index.html'))
   }
+
+  return win
 }
 
 app.whenReady().then(() => {
-  createWindow()
+  const win = createWindow()
+  initUpdater(win)
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()

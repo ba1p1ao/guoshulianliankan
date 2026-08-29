@@ -9,6 +9,7 @@
 - 计时进度条（倒计时随消除恢复），时间耗尽即失败。
 - 提示、洗牌、暂停功能；通关后进入下一关，全部通关显示胜利。
 - 自适应全屏窗口，格子大小随窗口自动缩放。
+- **在线更新**：GitHub Releases + Gitee 发行版双更新源（GitHub 失败自动切换 Gitee），支持 blockmap 差量下载；启动后台自动检查 + 开始界面手动检查；安装版可自更新，便携版引导前往发布页下载。
 - 两种发布形态：
   - **安装版** `guoshu-llk-x.x.x-setup.exe`：含桌面与开始菜单快捷方式，安装后自动运行。
   - **便携版** `guoshu-llk-x.x.x-portable.exe`：单文件，免安装，双击即玩。
@@ -48,6 +49,46 @@ npm run dist:portable  # 仅生成便携版
 - `guoshu-llk-<version>-portable.exe` —— 便携版
 
 > 说明：安装包未做代码签名，首次运行时 Windows SmartScreen 可能拦截，点击"仍要运行"即可。
+
+## 在线更新与发布流程
+
+应用集成 electron-updater，双更新源架构：
+
+| | GitHub Releases（主源） | Gitee 发行版（备源） |
+| --- | --- | --- |
+| 方式 | electron-updater 原生 github provider | generic 直链（运行时经 Gitee API 解析最新 tag） |
+| 地址 | 仓库 Releases 自动发现 | `https://gitee.com/ba1p1ao/guoshulianliankan/releases/download/<tag>/` |
+
+- 默认"自动"模式：先查 GitHub，超时（12 秒）或失败自动切换 Gitee；也可在开始界面"检查更新"弹窗中手动指定更新源（偏好存 localStorage）。
+- 差量更新依赖 `.blockmap`：Electron 运行时未变化的版本，通常只下载几 MB 增量。
+- 便携版不支持自更新（electron-updater 限制），检测到新版本时引导打开发布页。
+- 更新日志位置：`%LOCALAPPDATA%\guoshu-llk-updater\`。
+
+### 发布新版本（双平台）
+
+1. 提升版本号：`npm version patch`（生成 vX.Y.Z tag，**tag 必须与版本号一致**）。
+2. 构建安装版：`npm run dist:setup`。
+3. 在 **GitHub** 与 **Gitee** 两处各自创建**正式**发行版（不能是草稿，草稿不更新），均需上传以下三个同名文件：
+   - `dist/guoshu-llk-<version>-setup.exe`
+   - `dist/guoshu-llk-<version>-setup.exe.blockmap`
+   - `dist/latest.yml`
+   - 便携版 exe 可选附带，仅供手动下载。
+4. 发布后已安装的用户将在启动约 5 秒后收到更新并自动下载。
+
+GitHub 侧可用 gh CLI：`gh release create vX.Y.Z dist/guoshu-llk-*-setup.exe dist/guoshu-llk-*-setup.exe.blockmap dist/latest.yml`。
+
+### 本地测试更新链路
+
+不依赖线上发布即可验证全流程：
+
+```bash
+npm run dist:setup                    # 构建当前版本（作为"旧版"安装/运行）
+# 临时提升 package.json 版本号后再次 npm run dist:setup，得到"新版"产物
+npx http-server dist -p 8080          # 本地模拟更新服务器
+LLK_UPDATE_URL=http://127.0.0.1:8080/ "旧版应用路径/果蔬连连看.exe"  # 指向本地源
+```
+
+启动约 5 秒后旧版会自动发现新版本并下载；日志可通过附加 `--enable-logging` 参数观察。
 
 ## 操作说明
 

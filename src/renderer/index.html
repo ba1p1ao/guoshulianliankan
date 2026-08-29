@@ -11,7 +11,7 @@
       <section id="start" class="screen">
         <div class="title-wrap">
           <img id="title-img" alt="果蔬连连看" />
-          <span class="subtitle">单机版</span>
+          <span class="subtitle">单机版 <span id="app-version"></span></span>
         </div>
         <div class="help-wrap">
           <img id="help-img" class="help-img" alt="玩法说明" />
@@ -20,6 +20,10 @@
         <div class="level-select">
           <p class="level-tip">选择关卡（测试）</p>
           <div id="level-grid" class="level-grid"></div>
+        </div>
+        <div class="update-entry">
+          <button id="btn-check-update" class="link-btn">检查更新</button>
+          <span id="update-status" class="update-status hidden"></span>
         </div>
       </section>
 
@@ -61,6 +65,28 @@
           <h2>已暂停</h2>
           <button id="btn-resume" class="btn">继续</button>
           <button id="btn-menu" class="btn">返回主菜单</button>
+        </div>
+      </div>
+
+      <!-- 更新弹窗 -->
+      <div id="update-overlay" class="hidden">
+        <div class="pause-box update-box">
+          <h2 id="update-title">检查更新</h2>
+          <p id="update-msg" class="update-msg"></p>
+          <div id="update-progress" class="update-progress hidden">
+            <div id="update-progress-inner"></div>
+          </div>
+          <div class="menu">
+            <button id="btn-update-install" class="btn hidden">立即重启安装</button>
+            <button id="btn-update-download" class="btn hidden">打开下载页</button>
+            <button id="btn-update-close" class="btn">关闭</button>
+          </div>
+          <div class="update-sources">
+            <span>更新源</span>
+            <label><input type="radio" name="update-source" value="auto" />自动</label>
+            <label><input type="radio" name="update-source" value="github" />GitHub</label>
+            <label><input type="radio" name="update-source" value="gitee" />Gitee</label>
+          </div>
         </div>
       </div>
     </div>

@@ -369,3 +369,88 @@ body {
   color: #ffeb3b;
   font-size: 26px;
 }
+
+/* ---------- 在线更新 ---------- */
+.update-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2px;
+  min-height: 26px;
+}
+
+.link-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  opacity: 0.75;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.link-btn:hover {
+  opacity: 1;
+}
+
+.update-status {
+  font-size: 14px;
+  color: #ffe082;
+  cursor: pointer;
+}
+
+#update-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+}
+
+.update-box {
+  min-width: 420px;
+  max-width: 90vw;
+  padding: 10px 24px;
+}
+
+.update-msg {
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 46ch;
+}
+
+.update-progress {
+  width: 340px;
+  max-width: 70vw;
+  height: 14px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.22);
+  overflow: hidden;
+}
+
+.update-progress > div {
+  height: 100%;
+  width: 0%;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #8bc34a, #ffc107);
+  transition: width 0.25s linear;
+}
+
+.update-sources {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.update-sources label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
